@@ -7,6 +7,7 @@ import Loader from "../components/Loader";
 import { useProducts } from "../context/ProductsContext";
 
 import styles from "./ProductsPage.module.css";
+import { filterProducts, searchProducts } from "../helper/helper";
 
 function ProductsPage() {
   const products = useProducts();
@@ -19,9 +20,11 @@ function ProductsPage() {
     setDisplayed(products);
   }, [products]);
 
-  useEffect(()=>{
-    console.log(query)
-  },[query])
+  useEffect(() => {
+    let finalProducts = searchProducts(products, query.search);
+    finalProducts = filterProducts(finalProducts, query.category);
+    setDisplayed(finalProducts);
+  }, [query]);
   const searchHandler = () => {
     setQuery((query) => ({ ...query, search }));
   };
