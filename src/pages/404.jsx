@@ -1,7 +1,11 @@
-import React from "react";
+import notFound from "../images/page-not-found.webp";
 
 function PageNotFound() {
-  return <div>PageNotFound</div>;
+  return (
+    <div style={{textAlign:"center"}}>
+      <img src={notFound} alt="" />
+    </div>
+  );
 }
 
 export default PageNotFound;
